@@ -99,10 +99,10 @@ df.groupby(['COUNTRY', 'SOURCE']).agg({'PRICE': 'mean'})
 # seeing price means for each country-source-sex-age values
 df.groupby(['COUNTRY', 'SOURCE', 'SEX', 'AGE']).agg({'PRICE': 'mean'})
 
-# sorting dataframe according to price variable in descending order and saving it as a new dataframe
+# sorting the output according to price variable in descending order and saving it as a new dataframe
 agg_df = df.groupby(['COUNTRY', 'SOURCE', 'SEX', 'AGE']).agg({'PRICE': 'mean'}).sort_values(by='PRICE', ascending=False)
 
-# resetting the indexes (also getting rid of the old ones as well)
+# resetting the indexes 
 agg_df.reset_index(inplace=True)
 
 # categorising the ages based on age intervals
@@ -119,7 +119,7 @@ agg_df['PRICE'] = agg_df.groupby('customer_level_based')['PRICE'].transform('mea
 # creating segment values based on prices
 agg_df['SEGMENT'] = pd.qcut(agg_df['PRICE'], 4, labels=['D', 'C', 'B', 'A'])
 
-# getting rid of duplicate data
+# getting rid of duplicate data (and also old indexes as well)
 agg_df.drop_duplicates('customer_level_based', keep='first', inplace=True, ignore_index=True)
 
 # seeing some info about segments
