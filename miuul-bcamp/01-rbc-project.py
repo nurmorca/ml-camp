@@ -1,4 +1,4 @@
-# all codes executed in pyhton console.
+# all codes executed in python console.
 
 import pandas as pd
 
